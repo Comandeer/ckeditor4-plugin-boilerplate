@@ -4,7 +4,7 @@
   "description": "Some CKE4 plugin.",
   "main": "plugin.js",
   "scripts": {
-    "postinstall": "node dev/tasks/install",
+    "install-plugin": "node dev/tasks/install",
     "lint": "eslint -c dev/config/eslint/default.json src/**/*.js",
     "rollup": "rollup -c dev/config/rollup/default.js",
     "build": "npm run lint && npm run rollup",
