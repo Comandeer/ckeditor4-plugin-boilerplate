@@ -1,0 +1,9 @@
+node_modules/
+*.*~
+*.db
+.goutputstream-*
+*.bac
+/.project
+dist/
+/plugin.js
+/plugin.js.map

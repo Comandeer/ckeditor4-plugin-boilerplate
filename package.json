@@ -1,0 +1,55 @@
+{
+  "name": "ckeditor4-plugin-boilerplate",
+  "version": "0.0.0",
+  "description": "Some CKE4 plugin.",
+  "main": "plugin.js",
+  "scripts": {
+    "postinstall": "node dev/tasks/install",
+    "lint": "eslint -c dev/config/eslint/default.json src/**/*.js",
+    "rollup": "rollup -c dev/config/rollup/default.js",
+    "build": "npm run lint && npm run rollup",
+    "watch": "watch 'npm run build' src",
+    "test": "npm run build && cd ../../ && bender server run -c plugins/boilerplate/dev/config/bender/default.js",
+    "precommit": "npm run lint",
+    "preversion": "npm run build && git add -f plugin.js plugin.js.map",
+    "postversion": "git rm -r --cached plugin.js plugin.js.map && git commit -m \"[ci skip] Cleaning after release.\" && git push origin && git push origin --tags",
+    "prepublish": "in-publish && npm run build || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Comandeer/ckeditor4-plugin-speak2type.git"
+  },
+  "keywords": [
+    "CKEditor4",
+    "plugin"
+  ],
+  "files": [
+    "plugin.js",
+    "plugin.js.map",
+    "dialogs",
+    "icons",
+    "images",
+    "lang"
+  ],
+  "author": {
+    "name": "Comandeer",
+    "url": "https://www.comandeer.pl"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Comandeer/ckeditor4-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Comandeer/ckeditor4-boilerplate#readme",
+  "devDependencies": {
+    "babel-plugin-external-helpers": "^6.8.0",
+    "babel-preset-es2015": "^6.14.0",
+    "eslint": "^3.4.0",
+    "husky": "^0.11.6",
+    "in-publish": "^2.0.0",
+    "rollup": "^0.34.10",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-json": "^2.0.1",
+    "rollup-plugin-uglify": "^1.0.1",
+    "watch": "^0.19.2"
+  }
+}
