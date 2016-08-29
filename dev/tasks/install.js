@@ -19,7 +19,7 @@ if ( !fs.existsSync( path.resolve( CKEPath, 'ckeditor.js' ) ) ) {
 fs.symlinkSync( pluginPath, path.resolve( CKEPath, `plugins/${ pluginName }` ), 'dir' );
 
 // Update config.
-fs.appendFileSync( path.resolve( CKEPath, 'config.js' ), `CKEDITOR.editorConfig = function( config ) {
+fs.appendFileSync( path.resolve( CKEPath, 'config.js' ), `;CKEDITOR.editorConfig = function( config ) {
 	config.plugins += ',${ pluginName }';
 }`, 'utf8' );
 
