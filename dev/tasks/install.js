@@ -1,20 +1,26 @@
+#!/usr/bin/env node
+
 'use strict';
 
 const fs = require( 'fs' );
-const cwd = process.cwd();
+const path = require( 'path' );
 
-const packageInfo = require( `${ cwd }/package.json` );
+const pluginPath = path.resolve( __dirname, './../..' );
+const CKEPath = path.resolve( pluginPath, './../..' );
+console.log( CKEPath, __dirname, pluginPath );
+
+const packageInfo = require( path.resolve( pluginPath, 'package.json' ) );
 const pluginName = packageInfo.name.replace( 'ckeditor4-plugin-', '' );
 
-const CKEPath = `${ cwd }/../..`;
-
-if ( !fs.existsSync( `${ CKEPath }/ckeditor.js` ) ) {
+if ( !fs.existsSync( path.resolve( CKEPath, 'ckeditor.js' ) ) ) {
 	process.exit( 0 );
 }
 
-fs.linkSync( cwd, `${ CKEPath }/plugins/${ pluginName }` );
+fs.symlinkSync( pluginPath, path.resolve( CKEPath, `plugins/${ pluginName }` ), 'dir' );
 
 // Update config.
-fs.appendFileSync( `${ CKEPath }/config.js`, `CKEDITOR.editorConfig = function( config ) {
-	config.plugins.push( '${ pluginName }' );
+fs.appendFileSync( path.resolve( CKEPath, 'config.js' ), `CKEDITOR.editorConfig = function( config ) {
+	config.plugins += ',${ pluginName }';
 }`, 'utf8' );
+
+process.exit( 0 );
