@@ -43,7 +43,7 @@
   "homepage": "https://github.com/Comandeer/ckeditor4-boilerplate#readme",
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.8.0",
-    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-es2015": "^6.24.0",
     "eslint": "^3.4.0",
     "husky": "^0.13.2",
     "in-publish": "^2.0.0",
